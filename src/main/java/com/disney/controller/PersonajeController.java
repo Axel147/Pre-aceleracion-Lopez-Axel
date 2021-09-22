@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.disney.dto.PersonajeDTO;
+import com.disney.dto.PersonajeImaNomDTO;
 import com.disney.model.Personaje;
 import com.disney.service.IPersonajeService;
 
@@ -25,7 +26,7 @@ public class PersonajeController {
 	private IPersonajeService iPersonajeService;
 	
 	@GetMapping("/{id}")
-	public PersonajeDTO obtenerPersonaje(@PathVariable("id") Long id) {
+	public PersonajeImaNomDTO obtenerPersonaje(@PathVariable("id") Long id) {
 		return iPersonajeService.obtenerPersonaje(id);
 	}
 	

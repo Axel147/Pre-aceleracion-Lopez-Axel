@@ -11,6 +11,7 @@ import com.disney.builder.MetrajeBuilder;
 import com.disney.builder.PersonajeBuilder;
 import com.disney.dto.MetrajeDTO;
 import com.disney.dto.PersonajeDTO;
+import com.disney.dto.PersonajeImaNomDTO;
 import com.disney.model.Metraje;
 import com.disney.model.Personaje;
 import com.disney.repository.MetrajeRepository;
@@ -26,32 +27,41 @@ public class PersonajeServiceImpl implements IPersonajeService{
 	
 
 	@Override
-	public PersonajeDTO obtenerPersonaje(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public PersonajeImaNomDTO obtenerPersonaje(Long id) {
+		Personaje personaje = personajeRepository.getById(id);
+		PersonajeImaNomDTO personajeImaNomDTO = new PersonajeBuilder().imagenNombreWithPersonaje(personaje).buildImagenNombrePersonaje();
+
+		return personajeImaNomDTO;
+			
 	}
 
 	@Override
-	public List<PersonajeDTO> obtenerPersonajes() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<PersonajeImaNomDTO> obtenerPersonajes() {
+		List<PersonajeImaNomDTO> listaFinal = new ArrayList<>();
+		for(Personaje personajesRegistrados : personajeRepository.findAll()) {
+			PersonajeImaNomDTO personajeImaNomDTO = new PersonajeBuilder().imagenNombreWithPersonaje(personajesRegistrados).buildImagenNombrePersonaje();
+			
+			listaFinal.add(personajeImaNomDTO);
+		}
+		
+		return listaFinal;
 	}
 
 	@Override
 	public Personaje insertarPersonaje(PersonajeDTO personajeDTO) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public Personaje actualizarPersonaje(Long id, PersonajeDTO personajeDTO) {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 
 	@Override
 	public void eliminarPersonaje(Long id) {
-		// TODO Auto-generated method stub
+		
 		
 	}
 

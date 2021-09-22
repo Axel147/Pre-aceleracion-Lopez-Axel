@@ -1,6 +1,7 @@
 package com.disney.builder;
 
 import com.disney.dto.PersonajeDTO;
+import com.disney.dto.PersonajeImaNomDTO;
 import com.disney.model.Personaje;
 
 public class PersonajeBuilder {
@@ -9,6 +10,12 @@ public class PersonajeBuilder {
 	private int edad;
 	private double peso;
 	private String historia;
+	
+	public PersonajeBuilder imagenNombreWithPersonaje(Personaje personaje) {
+		this.nombre = personaje.getNombre();
+		this.imagen = personaje.getImagen();	
+		return this;
+	}
 	
 	public PersonajeBuilder withPersonajeDTO(PersonajeDTO personajeDTO) {
 		this.nombre = personajeDTO.getNombre();
@@ -19,8 +26,13 @@ public class PersonajeBuilder {
 		
 		return this;
 	}
+	
 	public Personaje build() {
 		return new Personaje(this.nombre, this.imagen, this.edad, this.peso, this.historia);
+	}
+	
+	public PersonajeImaNomDTO buildImagenNombrePersonaje() {
+		return new PersonajeImaNomDTO(this.nombre, this.imagen);
 	}
 	
 	public PersonajeBuilder withPersonaje(Personaje personaje) {
@@ -32,6 +44,7 @@ public class PersonajeBuilder {
 		
 		return this;
 	}
+	
 	public PersonajeDTO buildPersonajeDTO() {
 		return new PersonajeDTO(this.nombre, this.imagen, this.edad, this.peso, this.historia);
 	}

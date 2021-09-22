@@ -16,6 +16,11 @@ public class PersonajeDTO {
 		super();
 	}
 	
+	public PersonajeDTO(String nombre, String imagen) {
+		this.nombre = nombre;
+		this.imagen = imagen;
+	}
+	
 	public PersonajeDTO(Long id,String nombre, String imagen, int edad, double peso, String historia) {
 		this.id = id;
 		this.nombre = nombre;
