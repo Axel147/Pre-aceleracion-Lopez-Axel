@@ -17,7 +17,9 @@ import org.springframework.stereotype.Service;
 import com.disney.builder.MetrajeBuilder;
 import com.disney.builder.PersonajeBuilder;
 import com.disney.dto.MetrajeDTO;
+import com.disney.dto.MetrajeImaTitFecDTO;
 import com.disney.dto.PersonajeDTO;
+import com.disney.dto.PersonajeImaNomDTO;
 import com.disney.model.Metraje;
 import com.disney.model.Personaje;
 import com.disney.repository.MetrajeRepository;
@@ -32,15 +34,24 @@ public class MetrajeServiceImpl implements IMetrajeService{
 	private PersonajeRepository personajeRepository;
 	
 	@Override
-	public MetrajeDTO obtenerMetraje(Long id) {
-		// TODO Auto-generated method stub
-		return null;
+	public MetrajeImaTitFecDTO obtenerMetraje(Long id) {
+		Metraje metraje = metrajeRepository.getById(id);
+		MetrajeImaTitFecDTO metrajeImaTitFecDTO = new MetrajeBuilder().imaTitFecWithMetraje(metraje).buildImaTitFecMetrajeImaTitFecDTO();
+		
+		return metrajeImaTitFecDTO;
 	}
 	@Override
-	public List<MetrajeDTO> obtenerMetrajes() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<MetrajeImaTitFecDTO> obtenerMetrajes() {
+		List<MetrajeImaTitFecDTO> listaFinal = new ArrayList<>();
+		for(Metraje metrajesRegistrados : metrajeRepository.findAll()) {
+			MetrajeImaTitFecDTO metrajeImaTitFecDTO= new MetrajeBuilder().imaTitFecWithMetraje(metrajesRegistrados).buildImaTitFecMetrajeImaTitFecDTO();
+			
+			listaFinal.add(metrajeImaTitFecDTO);
+		}	
+		return listaFinal;
 	}
+	
+	
 	@Override
 	public Metraje insertarMetraje(MetrajeDTO metrajeDTO) {
 		// TODO Auto-generated method stub
