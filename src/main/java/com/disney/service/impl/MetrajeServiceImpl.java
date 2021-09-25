@@ -61,26 +61,25 @@ public class MetrajeServiceImpl implements IMetrajeService{
 	@Override
 	public Metraje insertarMetraje(MetrajeDTO metrajeDTO) {
 		Metraje metraje = new MetrajeBuilder().withMetrajeDTO(metrajeDTO).build();
-		/*boolean tieneGenero = false;
+		boolean tieneGenero = false;
 		boolean tienePersonaje = false;
 		List<Personaje> actores = new ArrayList<>();
 		List<Genero> clasificaciones = new ArrayList<>();
-		System.out.println("tieneGenero: " + tieneGenero);
-		System.out.println("tienePersonaje: " + tienePersonaje);
-		System.out.println("------------");
+		
 		if(metrajeDTO.getIdGenero()==null)  {
-			System.out.println("1er if tieneGenero: " + tieneGenero);
 			tieneGenero = false;
-		}else {
-			System.out.println("2do if tieneGenero: " + tieneGenero);
+			System.out.println("1er if tieneGenero: " + tieneGenero);
+			
+		}else if(metrajeDTO.getIdGenero()!=null){
 			tieneGenero = true;
+			System.out.println("2do if tieneGenero: " + tieneGenero);
 		}
 		if(metrajeDTO.getIdPersonajes()==null)  {
-			System.out.println("1er if tienePersonaje: " + tienePersonaje);
 			tienePersonaje = false;
-		}else {
-			System.out.println("2do if tienePersonaje: " + tienePersonaje);
+			System.out.println("1er if tienePersonaje: " + tienePersonaje);
+		}else if(metrajeDTO.getIdPersonajes()!=null){
 			tienePersonaje = true;
+			System.out.println("2do if tienePersonaje: " + tienePersonaje);
 		}
 		//-----------------------------PRIMER CASO-----------------------------
 		
@@ -106,7 +105,6 @@ public class MetrajeServiceImpl implements IMetrajeService{
 				}
 			}
 			metraje.setClasificado(clasificaciones);
-			System.out.println(metraje.getClasificado());
 			metrajeRepository.save(metraje);
 			
 		//-----------------------------TERCER CASO-----------------------------	
@@ -131,18 +129,18 @@ public class MetrajeServiceImpl implements IMetrajeService{
 				}
 			}
 			metraje.setActua(actores);
-			//metrajeRepository.save(metraje);
+			metrajeRepository.save(metraje);
 		//-----------------------------CUARTO CASO-----------------------------	
 		}else if(tieneGenero==false && tienePersonaje==false) {
 			System.out.println("no tiene genero y no tiene personaje");
-			//metrajeRepository.save(metraje);
+			metrajeRepository.save(metraje);
 		}
-		System.out.println(metrajeDTO.getIdGenero());
-		System.out.println(metrajeDTO.getIdPersonajes());
+		System.out.println("idGenero" + metrajeDTO.getIdGenero());
+		System.out.println("idPersonaje" + metrajeDTO.getIdPersonajes());
 		System.out.println("tieneGenero: " + tieneGenero);
 		System.out.println("tienePersonaje: " + tienePersonaje);		
 		System.out.println("--------------------------------------------------------------------------------");		
-		*/
+
 		return metraje;
 		}
 		

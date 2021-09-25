@@ -31,6 +31,12 @@ public class Genero {
 	  
 	 }
 	 
+	 public Genero(Long id, String nombre, String imagen) {
+		 this.id = id;
+		 this.nombre = nombre;
+		 this.imagen = imagen;
+	 }
+	 
 	 public Genero(String nombre, String imagen) {
 		 this.nombre = nombre;
 		 this.imagen = imagen;

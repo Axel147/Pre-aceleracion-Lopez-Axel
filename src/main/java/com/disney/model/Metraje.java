@@ -41,8 +41,8 @@ public class Metraje {
 	 @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.MERGE})
 	 @JoinTable(
 			 name="metraje_genero" ,
-			 joinColumns=@JoinColumn(name = "id_genero"),
-			 inverseJoinColumns=@JoinColumn(name = "id_metraje"))
+			 joinColumns=@JoinColumn(name = "metraje_id"),
+			 inverseJoinColumns=@JoinColumn(name = "genero_id"))
 	 private List<Genero> clasificado = new ArrayList<>();
 	
 	public Metraje() {
