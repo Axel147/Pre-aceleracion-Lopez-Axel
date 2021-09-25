@@ -1,10 +1,14 @@
 package com.disney.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -18,11 +22,18 @@ public class Genero {
 	 private String nombre;
 	 @Column(name = "imagen")
 	 private String imagen;
-	 //@Column(name = "metraje")
-	 //private List<Metraje> clasificacion;
+	 
+	 @ManyToMany(mappedBy = "clasificado")
+		private List<Metraje> metrajesConEstaCategoria = new ArrayList<>();
+	 
 	 
 	 public Genero() {
 	  
+	 }
+	 
+	 public Genero(String nombre, String imagen) {
+		 this.nombre = nombre;
+		 this.imagen = imagen;
 	 }
 	
 	 public long getId() {
@@ -48,7 +59,14 @@ public class Genero {
 	 public void setImagen(String imagen) {
 	  this.imagen = imagen;
 	 }
+
+	public List<Metraje> getMetrajesConEstaCategoria() {
+		return metrajesConEstaCategoria;
+	}
+
+	public void setMetrajesConEstaCategoria(List<Metraje> metrajesConEstaCategoria) {
+		this.metrajesConEstaCategoria = metrajesConEstaCategoria;
+	}
 	 
- 
  
 }

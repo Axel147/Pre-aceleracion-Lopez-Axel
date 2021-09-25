@@ -38,7 +38,12 @@ public class Metraje {
 			 inverseJoinColumns=@JoinColumn(name = "personaje_id"))
 	 private List<Personaje> actua = new ArrayList<>();
 	 
-	 //private List<Genero> clasificado;
+	 @ManyToMany(cascade = {CascadeType.MERGE, CascadeType.MERGE})
+	 @JoinTable(
+			 name="metraje_genero" ,
+			 joinColumns=@JoinColumn(name = "id_genero"),
+			 inverseJoinColumns=@JoinColumn(name = "id_metraje"))
+	 private List<Genero> clasificado = new ArrayList<>();
 	
 	public Metraje() {
 		super();
@@ -87,5 +92,13 @@ public class Metraje {
 	}
 	public void setActua(List<Personaje> actua) {
 		this.actua = actua;
+	}
+
+	public List<Genero> getClasificado() {
+		return clasificado;
+	}
+
+	public void setClasificado(List<Genero> clasificado) {
+		this.clasificado = clasificado;
 	}
 }
