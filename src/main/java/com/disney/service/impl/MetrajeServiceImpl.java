@@ -50,7 +50,7 @@ public class MetrajeServiceImpl implements IMetrajeService{
 	public List<MetrajeImaTitFecDTO> obtenerMetrajes() {
 		List<MetrajeImaTitFecDTO> listaFinal = new ArrayList<>();
 		for(Metraje metrajesRegistrados : metrajeRepository.findAll()) {
-			MetrajeImaTitFecDTO metrajeImaTitFecDTO= new MetrajeBuilder().imaTitFecWithMetraje(metrajesRegistrados).buildImaTitFecMetrajeImaTitFecDTO();
+			MetrajeImaTitFecDTO metrajeImaTitFecDTO = new MetrajeBuilder().imaTitFecWithMetraje(metrajesRegistrados).buildImaTitFecMetrajeImaTitFecDTO();
 			
 			listaFinal.add(metrajeImaTitFecDTO);
 		}	
@@ -78,29 +78,26 @@ public class MetrajeServiceImpl implements IMetrajeService{
 		}
 		//-----------------------------PRIMER CASO-----------------------------
 		if(tieneGenero==true && tienePersonaje==true) {
-
 			metraje = almacenarGenero(metrajeDTO);
 			Metraje metrajeConPersonajes = almacenarPersonaje(metrajeDTO);
 			metraje.setActua(metrajeConPersonajes.getActua());
 			metrajeRepository.save(metraje);
+			
 		//-----------------------------SEGUNDO CASO-----------------------------	
 		}else if(tieneGenero==true && tienePersonaje==false) {
-
 			metraje = almacenarGenero(metrajeDTO);
 			metrajeRepository.save(metraje);
+			
 		//-----------------------------TERCER CASO-----------------------------	
 		}else if(tieneGenero==false && tienePersonaje==true) {
-
 			metraje = almacenarPersonaje(metrajeDTO);
 			metrajeRepository.save(metraje);
+			
 		//-----------------------------CUARTO CASO-----------------------------	
 		}else if(tieneGenero==false && tienePersonaje==false) {
-
 			metrajeRepository.save(metraje);
 		}
-		
 		return metraje;	
-	
 	}
 	
 	private Metraje  almacenarPersonaje(MetrajeDTO metrajeDTO) {

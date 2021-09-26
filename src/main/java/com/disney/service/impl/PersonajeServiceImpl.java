@@ -49,8 +49,24 @@ public class PersonajeServiceImpl implements IPersonajeService{
 
 	@Override
 	public Personaje insertarPersonaje(PersonajeDTO personajeDTO) {
+		Personaje personaje = new PersonajeBuilder().withPersonajeDTO(personajeDTO).build();
+		boolean tieneMetraje = true;
 		
-		return null;
+		if(personajeDTO.getIdMetraje() == null) {
+			tieneMetraje = false;
+		}
+		//----------------------PRIMER CASO----------------------
+		if(tieneMetraje == true) {
+			System.out.println("Tiene peliculas asociadas");
+			
+			
+		}//----------------------SEGUNDO CASO----------------------
+		
+		else {
+			System.out.println("Sin peliculas");
+			personajeRepository.save(personaje);
+		}
+		return personaje;
 	}
 
 	@Override

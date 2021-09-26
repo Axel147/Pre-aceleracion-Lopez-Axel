@@ -40,21 +40,49 @@ INSERT INTO `metraje` (`id`, `titulo`, `imagen`, `fecha`, `calificacion`) VALUES
 	(15, 'Star wars El ataque de los clones', '//ruta', '2002-01-01', 4.5),
 	(16, 'Star wars La venganza de los Sith', '//ruta mod', '2005-01-01', 5),
 	(18, 'Lilo y Stich', '//ruta', '2000-01-01', 4.5),
-	(19, 'Pelicula01', '//ruta', '2000-01-01', 4);
+	(19, 'Pelicula01', '//ruta', '2000-01-01', 4),
+	(22, 'Pelicula02', '//ruta', '2000-01-01', 4.5),
+	(23, 'Pelicula03', '//ruta', '2000-01-01', 4.5),
+	(25, 'Pelicula04', '//ruta', '2000-01-01', 4.5),
+	(26, 'Pelicula05', '//ruta', '2000-01-01', 4.5),
+	(34, 'Pelicula06', '//ruta', '2000-01-01', 4.5),
+	(35, 'Pelicula07', '//ruta', '2000-01-01', 4.3),
+	(36, 'Pelicula07', '//ruta', '2000-01-01', 4.3),
+	(37, 'Pelicula08', '//ruta', '2000-01-01', 4.3),
+	(38, 'Pelicula08', '//ruta', '2000-01-01', 4.3),
+	(39, 'Pelicula09', '//ruta', '2000-01-01', 4.3),
+	(40, 'Pelicula10', '//ruta', '2000-01-01', 4.3);
 /*!40000 ALTER TABLE `metraje` ENABLE KEYS */;
 
 -- Volcando datos para la tabla disney.metraje_genero: ~0 rows (aproximadamente)
 /*!40000 ALTER TABLE `metraje_genero` DISABLE KEYS */;
+INSERT INTO `metraje_genero` (`id`, `metraje_id`, `genero_id`) VALUES
+	(1, 25, 2),
+	(2, 26, 1),
+	(3, 26, 2),
+	(4, 26, 3),
+	(16, 34, 1),
+	(17, 34, 2),
+	(18, 34, 3),
+	(19, 35, 4),
+	(20, 36, 2),
+	(21, 37, 2),
+	(22, 38, 2);
 /*!40000 ALTER TABLE `metraje_genero` ENABLE KEYS */;
 
 -- Volcando datos para la tabla disney.metraje_personaje: ~2 rows (aproximadamente)
 /*!40000 ALTER TABLE `metraje_personaje` DISABLE KEYS */;
 INSERT INTO `metraje_personaje` (`id`, `metraje_id`, `personaje_id`) VALUES
-	(1, 1, 2),
-	(2, 1, 3);
+	(3, 22, 2),
+	(4, 23, 2),
+	(5, 23, 3),
+	(6, 34, 2),
+	(7, 34, 3),
+	(8, 35, 4),
+	(9, 39, 3);
 /*!40000 ALTER TABLE `metraje_personaje` ENABLE KEYS */;
 
--- Volcando datos para la tabla disney.personaje: ~4 rows (aproximadamente)
+-- Volcando datos para la tabla disney.personaje: ~5 rows (aproximadamente)
 /*!40000 ALTER TABLE `personaje` DISABLE KEYS */;
 INSERT INTO `personaje` (`id`, `nombre`, `imagen`, `edad`, `peso`, `historia`) VALUES
 	(2, 'Mickey Mouse', 'ruta...', 92, 1, 'bla bla bla'),
