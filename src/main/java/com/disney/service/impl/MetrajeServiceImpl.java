@@ -83,10 +83,42 @@ public class MetrajeServiceImpl implements IMetrajeService{
 		}
 		//-----------------------------PRIMER CASO-----------------------------
 		
-		if((tieneGenero==true) && (tienePersonaje==true)) {
+		if(tieneGenero==true && tienePersonaje==true) {
 			System.out.println("tiene genero y tiene personaje");	
 			System.out.println("tengo que comprobar que los generos estan cargados en mi base");
 			System.out.println("tengo que comprobar que los personajes existan");
+			
+			for(GeneroDTO p : metrajeDTO.getIdGenero()) {
+				for(Genero generosTotales : generoRepository.findAll()) {
+					Genero generoAcumulador;
+					if(p.getId()==generosTotales.getId()){
+						generoAcumulador = new GeneroBuilder().withGenero(generosTotales).build();
+						generoAcumulador.setId(generosTotales.getId());
+						
+						clasificaciones.add(generoAcumulador);
+						generosTotales.getMetrajesConEstaCategoria().add(metraje);
+					}
+					generoRepository.save(generosTotales);		
+				}
+			}
+			metraje.setClasificado(clasificaciones);
+			
+			for(PersonajeDTO p : metrajeDTO.getIdPersonajes()) {
+				for(Personaje personajesTotales : personajeRepository.findAll()) {
+					Personaje personajeAcumulador;
+					if(p.getId()==personajesTotales.getId()){
+						personajeAcumulador = new PersonajeBuilder().withPersonaje(personajesTotales).build();
+						personajeAcumulador.setId(personajesTotales.getId());
+						
+						actores.add(personajeAcumulador);
+						personajesTotales.getParticipaciones().add(metraje);
+					}
+					personajeRepository.save(personajesTotales);		
+				}
+			}
+
+			metraje.setActua(actores);
+			metrajeRepository.save(metraje);
 			
 		//-----------------------------SEGUNDO CASO-----------------------------	
 		}else if(tieneGenero==true && tienePersonaje==false) {
