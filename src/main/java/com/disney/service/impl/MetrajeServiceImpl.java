@@ -152,7 +152,7 @@ public class MetrajeServiceImpl implements IMetrajeService{
 	}
 	@Override
 	public void eliminarMetraje(Long id) {
-		// TODO Auto-generated method stub
+		metrajeRepository.deleteById(id);;
 		
 	}
 	
