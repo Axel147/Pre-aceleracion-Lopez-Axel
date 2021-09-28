@@ -116,7 +116,7 @@ public class PersonajeServiceImpl implements IPersonajeService{
 
 	@Override
 	public void eliminarPersonaje(Long id) {
-		
+		personajeRepository.deleteById(id);
 		
 	}
 

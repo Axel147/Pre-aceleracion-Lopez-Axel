@@ -167,7 +167,7 @@ public class MetrajeServiceImpl implements IMetrajeService{
 	}
 	@Override
 	public void eliminarMetraje(Long id) {
-		metrajeRepository.deleteById(id);;
+		metrajeRepository.deleteById(id);
 		
 	}
 	
