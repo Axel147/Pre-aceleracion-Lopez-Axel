@@ -3,14 +3,11 @@ package com.disney.service.impl;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.hibernate.internal.build.AllowSysOut;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.disney.builder.MetrajeBuilder;
-import com.disney.builder.PersonajeBuilder;
-import com.disney.dto.MetrajeDTO;
-import com.disney.dto.MetrajeSinPersonajeDTO;
+import com.disney.builder.PersonajeBuilder;import com.disney.dto.MetrajeSinPersonajeDTO;
 import com.disney.dto.PersonajeDTO;
 import com.disney.dto.PersonajeDetalleDTO;
 import com.disney.dto.PersonajeImaNomDTO;
@@ -68,6 +65,7 @@ public class PersonajeServiceImpl implements IPersonajeService{
 	public Personaje insertarPersonaje(PersonajeDTO personajeDTO) {
 		Personaje personaje = new PersonajeBuilder().withPersonajeDTO(personajeDTO).build();
 		boolean tieneMetraje = true;
+		List<Metraje> participaciones =  new ArrayList<>();
 		
 		if(personajeDTO.getIdMetraje() == null) {
 			tieneMetraje = false;
@@ -75,12 +73,11 @@ public class PersonajeServiceImpl implements IPersonajeService{
 		//----------------------PRIMER CASO----------------------
 		if(tieneMetraje == true) {
 			System.out.println("Tiene peliculas asociadas");
-			
-			
 		}//----------------------SEGUNDO CASO----------------------
 		
 		else {
 			System.out.println("Sin peliculas");
+			personaje.setParticipaciones(participaciones);
 			personajeRepository.save(personaje);
 		}
 		return personaje;
