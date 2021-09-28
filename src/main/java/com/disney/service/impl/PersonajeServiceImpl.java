@@ -6,11 +6,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.disney.builder.GeneroBuilder;
 import com.disney.builder.MetrajeBuilder;
-import com.disney.builder.PersonajeBuilder;import com.disney.dto.MetrajeSinPersonajeDTO;
+import com.disney.builder.PersonajeBuilder;
+import com.disney.dto.GeneroDTO;
+import com.disney.dto.MetrajeDTO;
+import com.disney.dto.MetrajeSinPersonajeDTO;
 import com.disney.dto.PersonajeDTO;
 import com.disney.dto.PersonajeDetalleDTO;
 import com.disney.dto.PersonajeImaNomDTO;
+import com.disney.model.Genero;
 import com.disney.model.Metraje;
 import com.disney.model.Personaje;
 import com.disney.repository.MetrajeRepository;
@@ -69,17 +74,37 @@ public class PersonajeServiceImpl implements IPersonajeService{
 		
 		if(personajeDTO.getIdMetraje() == null) {
 			tieneMetraje = false;
-		}
-		//----------------------PRIMER CASO----------------------
+		}//----------------------PRIMER CASO----------------------
 		if(tieneMetraje == true) {
 			System.out.println("Tiene peliculas asociadas");
+			personaje = almacenarMetraje(personajeDTO);
+			personajeRepository.save(personaje);
 		}//----------------------SEGUNDO CASO----------------------
-		
 		else {
 			System.out.println("Sin peliculas");
 			personaje.setParticipaciones(participaciones);
 			personajeRepository.save(personaje);
 		}
+		return personaje;
+	}
+	
+	
+	private Personaje almacenarMetraje(PersonajeDTO personajeDTO) {
+		Personaje personaje = new PersonajeBuilder().withPersonajeDTO(personajeDTO).build();
+		List<Metraje> actuo = new ArrayList<>();
+		for(MetrajeDTO m : personajeDTO.getIdMetraje()) {
+			for(Metraje metrajesTotales : metrajeRepository.findAll()) {
+				Metraje metrajeAcumulador;
+				if(m.getId()==metrajesTotales.getId()){
+					metrajeAcumulador = new MetrajeBuilder().withMetraje(metrajesTotales).build();
+					metrajeAcumulador.setId(metrajesTotales.getId());
+					
+					actuo.add(metrajeAcumulador);
+					metrajesTotales.getActua().add(personaje);
+				}
+			}
+		}
+		personaje.setParticipaciones(actuo);
 		return personaje;
 	}
 

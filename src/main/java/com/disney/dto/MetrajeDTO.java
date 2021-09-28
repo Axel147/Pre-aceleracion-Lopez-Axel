@@ -6,7 +6,7 @@ import java.util.List;
 import com.disney.model.Personaje;
 
 public class MetrajeDTO {
-	//private Long id;
+	private Long id;
 	private String titulo;
 	private String imagen;
 	private Date fecha;
@@ -43,7 +43,7 @@ public class MetrajeDTO {
 		this.idPersonajes = idPersonajes;
 		this.idGenero = idGenero;
 	}
-/*
+
 	public Long getId() {
 		return id;
 	}
@@ -51,7 +51,7 @@ public class MetrajeDTO {
 	public void setId(Long id) {
 		this.id = id;
 	}
-*/
+
 	public String getTitulo() {
 		return titulo;
 	}

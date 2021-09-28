@@ -45,7 +45,7 @@ public class MetrajeController {
 	}
 	@PutMapping("/{id}")
 	public ResponseEntity<?> actualizarMetraje(@PathVariable("id") Long id, @RequestBody MetrajeDTO metrajeDTO){
-		Metraje metraje = iMetrajeService.actualizarMetraje(id,metrajeDTO);//por ahora por mas que no encuentre el id pasado por parametro agrega el elemento nuevo , modificarlo
+		Metraje metraje = iMetrajeService.actualizarMetraje(id,metrajeDTO);
 		return new ResponseEntity<>(metraje,HttpStatus.OK);
 	}
 	
@@ -55,35 +55,4 @@ public class MetrajeController {
 		return new ResponseEntity<>("Metraje eliminado correctamente", HttpStatus.OK);
 	}
 	
-	/*
-	@Autowired
-	private IMetrajeService iMetrajeService;
-	
-	@GetMapping("/{id}")
-	public Metraje obtenerMetraje(@PathVariable("id") Long id) { //para recibir un parametro desde el cliente @PathVariable
-		return iMetrajeService.obtenerMetraje(id);
-	}
-	
-	@GetMapping
-	public List<Metraje> obtenerMetrajes(){
-		 return iMetrajeService.obtenerMetrajes();
-	}
-	
-	@PostMapping //para poder almacenar un dato en la apirest
-	public Metraje insertarMetraje(@RequestBody Metraje metraje) {
-		//System.out.println(metraje.getTitulo());
-		iMetrajeService.insertarMetraje(metraje);
-		return metraje;
-	}
-	@PutMapping
-	public void actualizarMetraje(@RequestBody Metraje metraje) { //va a venir un objeto desde el cliente
-		iMetrajeService.actualizarMetraje(metraje);
-		//por ahora por mas que no encuentre el id pasado por parametro agrega el elemento nuevo , modificarlo
-	}
-	
-	@DeleteMapping("metraje/{id}")
-	public void eliminarMetraje(@PathVariable("id") Long id) {
-		iMetrajeService.eliminarMetraje(id);
-	}
-	*/
 }
