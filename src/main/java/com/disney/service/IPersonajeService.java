@@ -3,12 +3,13 @@ package com.disney.service;
 import java.util.List;
 
 import com.disney.dto.PersonajeDTO;
+import com.disney.dto.PersonajeDetalleDTO;
 import com.disney.dto.PersonajeImaNomDTO;
 import com.disney.model.Personaje;
 
 public interface IPersonajeService {
 	
-	public PersonajeImaNomDTO obtenerPersonaje(Long id);
+	public PersonajeDetalleDTO obtenerPersonaje(Long id);
 	
 	public List<PersonajeImaNomDTO>obtenerPersonajes();
 	

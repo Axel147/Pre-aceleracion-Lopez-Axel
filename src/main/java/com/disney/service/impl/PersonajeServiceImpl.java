@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.disney.builder.MetrajeBuilder;
 import com.disney.builder.PersonajeBuilder;
 import com.disney.dto.MetrajeDTO;
+import com.disney.dto.MetrajeSinPersonajeDTO;
 import com.disney.dto.PersonajeDTO;
+import com.disney.dto.PersonajeDetalleDTO;
 import com.disney.dto.PersonajeImaNomDTO;
 import com.disney.model.Metraje;
 import com.disney.model.Personaje;
@@ -27,11 +29,26 @@ public class PersonajeServiceImpl implements IPersonajeService{
 	
 
 	@Override
-	public PersonajeImaNomDTO obtenerPersonaje(Long id) {
+	public PersonajeDetalleDTO obtenerPersonaje(Long id) {
 		Personaje personaje = personajeRepository.getById(id);
-		PersonajeImaNomDTO personajeImaNomDTO = new PersonajeBuilder().imagenNombreWithPersonaje(personaje).buildImagenNombrePersonaje();
+		PersonajeDetalleDTO personajeDetallado = new PersonajeBuilder().withPersonaje(personaje).buildPersonajeDetalleDTO();
+		List<MetrajeSinPersonajeDTO> carreraCinematografica = new ArrayList<>();
+		personajeDetallado.setId(personaje.getId());
+		for(Metraje actuo : personaje.getParticipaciones()) {
+			for(Metraje metrajesRegistrados : metrajeRepository.findAll()) {
+				MetrajeSinPersonajeDTO metrajeDTO;
+				if(actuo.getId() == metrajesRegistrados.getId()) {
+					metrajeDTO = new MetrajeBuilder().withMetraje(metrajesRegistrados).buildMetrajeSinPersonajeDTO();
+					metrajeDTO.setId(metrajesRegistrados.getId());
+					carreraCinematografica.add(metrajeDTO);
+				}
+			}
+		}
+		personajeDetallado.setIdMetraje(carreraCinematografica);
+		
+		
 
-		return personajeImaNomDTO;
+		return personajeDetallado;
 			
 	}
 
