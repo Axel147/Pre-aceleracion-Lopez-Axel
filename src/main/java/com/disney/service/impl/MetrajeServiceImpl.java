@@ -19,9 +19,11 @@ import com.disney.builder.MetrajeBuilder;
 import com.disney.builder.PersonajeBuilder;
 import com.disney.dto.GeneroDTO;
 import com.disney.dto.MetrajeDTO;
+import com.disney.dto.MetrajeDetalleDTO;
 import com.disney.dto.MetrajeImaTitFecDTO;
 import com.disney.dto.PersonajeDTO;
 import com.disney.dto.PersonajeImaNomDTO;
+import com.disney.dto.PersonajeSinMetrajeDTO;
 import com.disney.model.Genero;
 import com.disney.model.Metraje;
 import com.disney.model.Personaje;
@@ -40,11 +42,27 @@ public class MetrajeServiceImpl implements IMetrajeService{
 	private GeneroRepository generoRepository;
 	
 	@Override
-	public MetrajeImaTitFecDTO obtenerMetraje(Long id) {
+	public MetrajeDetalleDTO obtenerMetraje(Long id) {
 		Metraje metraje = metrajeRepository.getById(id);
-		MetrajeImaTitFecDTO metrajeImaTitFecDTO = new MetrajeBuilder().imaTitFecWithMetraje(metraje).buildImaTitFecMetrajeImaTitFecDTO();
+		MetrajeDetalleDTO metrajeDetallado = new MetrajeBuilder().withMetraje(metraje).buildMetrajeDetalleDTO();
+		metrajeDetallado.setId(metraje.getId());
+		List<PersonajeSinMetrajeDTO> listaElenco= new ArrayList<>();
 		
-		return metrajeImaTitFecDTO;
+		for(Personaje actua : metraje.getActua()) {
+			for(Personaje actoresTotalesRegistrados : personajeRepository.findAll()) {
+				PersonajeSinMetrajeDTO personajeSinMetrajeDTO = new PersonajeSinMetrajeDTO();
+				if( actua.getId() == actoresTotalesRegistrados.getId()) {
+					personajeSinMetrajeDTO = new PersonajeBuilder().withPersonaje(actoresTotalesRegistrados).buildPersonajeSinMetrajeDTO();
+					personajeSinMetrajeDTO.setId(actoresTotalesRegistrados.getId());
+					
+					listaElenco.add(personajeSinMetrajeDTO);
+				}
+			}
+		}
+		
+		metrajeDetallado.setIdPersonajes(listaElenco);
+		
+		return metrajeDetallado;
 	}
 	@Override
 	public List<MetrajeImaTitFecDTO> obtenerMetrajes() {
@@ -100,7 +118,7 @@ public class MetrajeServiceImpl implements IMetrajeService{
 		return metraje;	
 	}
 	
-	private Metraje  almacenarPersonaje(MetrajeDTO metrajeDTO) {
+	private Metraje almacenarPersonaje(MetrajeDTO metrajeDTO) {
 		Metraje metraje = new MetrajeBuilder().withMetrajeDTO(metrajeDTO).build();
 		List<Personaje> actores = new ArrayList<>();
 		for(PersonajeDTO p : metrajeDTO.getIdPersonajes()) {

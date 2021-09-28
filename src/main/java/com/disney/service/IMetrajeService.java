@@ -3,12 +3,13 @@ package com.disney.service;
 import java.util.List;
 
 import com.disney.dto.MetrajeDTO;
+import com.disney.dto.MetrajeDetalleDTO;
 import com.disney.dto.MetrajeImaTitFecDTO;
 import com.disney.model.Metraje;
 
 public interface IMetrajeService {
 	
-	public MetrajeImaTitFecDTO obtenerMetraje(Long id);
+	public MetrajeDetalleDTO obtenerMetraje(Long id);
 	
 	public List<MetrajeImaTitFecDTO> obtenerMetrajes();
 	

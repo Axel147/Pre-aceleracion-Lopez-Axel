@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.disney.dto.MetrajeDTO;
+import com.disney.dto.MetrajeDetalleDTO;
 import com.disney.dto.MetrajeImaTitFecDTO;
 import com.disney.model.Metraje;
 import com.disney.service.IMetrajeService;
@@ -28,7 +29,7 @@ public class MetrajeController {
 	private IMetrajeService iMetrajeService;
 	
 	@GetMapping("/{id}")
-	public MetrajeImaTitFecDTO obtenerMetraje(@PathVariable("id") Long id){ //para recibir un parametro desde el cliente @PathVariable
+	public MetrajeDetalleDTO obtenerMetraje(@PathVariable("id") Long id){ //para recibir un parametro desde el cliente @PathVariable
 		return iMetrajeService.obtenerMetraje(id);
 	}
 	

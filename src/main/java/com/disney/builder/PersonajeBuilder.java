@@ -2,6 +2,7 @@ package com.disney.builder;
 
 import com.disney.dto.PersonajeDTO;
 import com.disney.dto.PersonajeImaNomDTO;
+import com.disney.dto.PersonajeSinMetrajeDTO;
 import com.disney.model.Personaje;
 
 public class PersonajeBuilder {
@@ -44,6 +45,11 @@ public class PersonajeBuilder {
 		
 		return this;
 	}
+	
+	public PersonajeSinMetrajeDTO buildPersonajeSinMetrajeDTO() {
+		return new PersonajeSinMetrajeDTO(this.nombre, this.imagen, this.edad, this.peso, this.historia);
+	}
+	
 	
 	public PersonajeDTO buildPersonajeDTO() {
 		return new PersonajeDTO(this.nombre, this.imagen, this.edad, this.peso, this.historia);

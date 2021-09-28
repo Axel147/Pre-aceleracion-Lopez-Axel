@@ -4,6 +4,7 @@ import java.sql.Date;
 import java.util.List;
 
 import com.disney.dto.MetrajeDTO;
+import com.disney.dto.MetrajeDetalleDTO;
 import com.disney.dto.MetrajeImaTitFecDTO;
 import com.disney.dto.PersonajeDTO;
 import com.disney.model.Metraje;
@@ -40,6 +41,11 @@ public class MetrajeBuilder {
 	
 	public MetrajeDTO buildMetrajeDTO() {
 		return new MetrajeDTO(this.titulo, this.imagen, this.fecha, this.calificacion);
+	}
+
+	
+	public MetrajeDetalleDTO buildMetrajeDetalleDTO() {
+		return new MetrajeDetalleDTO(this.titulo, this.imagen, this.fecha, this.calificacion);
 	}
 
 	public MetrajeBuilder imaTitFecWithMetraje(Metraje metraje) {
