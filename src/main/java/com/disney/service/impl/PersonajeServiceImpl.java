@@ -47,11 +47,8 @@ public class PersonajeServiceImpl implements IPersonajeService{
 			}
 		}
 		personajeDetallado.setIdMetraje(carreraCinematografica);
-		
-		
-
+	
 		return personajeDetallado;
-			
 	}
 
 	@Override

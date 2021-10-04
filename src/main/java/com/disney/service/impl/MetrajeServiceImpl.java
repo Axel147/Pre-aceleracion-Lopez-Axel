@@ -162,9 +162,24 @@ public class MetrajeServiceImpl implements IMetrajeService{
 	
 	@Override
 	public Metraje actualizarMetraje(Long id, MetrajeDTO metrajeDTO) {
-		// TODO Auto-generated method stub
+		Metraje metrajeModif = metrajeRepository.getById(id);
+		Metraje metrajeAcum = new Metraje();
+		
+		metrajeModif.setTitulo(metrajeDTO.getTitulo());
+		metrajeModif.setImagen(metrajeDTO.getImagen());
+		metrajeModif.setFecha(metrajeDTO.getFecha());
+		metrajeModif.setCalificacion(metrajeDTO.getCalificacion());
+		
+		metrajeAcum = almacenarPersonaje(metrajeDTO);
+		metrajeModif.setActua(metrajeAcum.getActua());
+		metrajeAcum = almacenarGenero(metrajeDTO);
+		metrajeModif.setClasificado(metrajeAcum.getClasificado());
+		
+		metrajeRepository.save(metrajeModif);
 		return null;
 	}
+	
+	
 	@Override
 	public void eliminarMetraje(Long id) {
 		metrajeRepository.deleteById(id);
