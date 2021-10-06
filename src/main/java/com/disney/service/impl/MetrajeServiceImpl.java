@@ -162,13 +162,9 @@ public class MetrajeServiceImpl implements IMetrajeService{
 	
 	@Override
 	public Metraje actualizarMetraje(Long id, MetrajeDTO metrajeDTO) {
-		Metraje metrajeModif = metrajeRepository.getById(id);
+		/*Metraje metrajeModif = metrajeRepository.getById(id);
 		Metraje metrajeAcum = new Metraje();
-		
-		metrajeModif.setTitulo(metrajeDTO.getTitulo());
-		metrajeModif.setImagen(metrajeDTO.getImagen());
-		metrajeModif.setFecha(metrajeDTO.getFecha());
-		metrajeModif.setCalificacion(metrajeDTO.getCalificacion());
+		metrajeModif = new MetrajeBuilder().withMetrajeDTO(metrajeDTO).build();
 		
 		metrajeAcum = almacenarPersonaje(metrajeDTO);
 		metrajeModif.setActua(metrajeAcum.getActua());
@@ -176,6 +172,7 @@ public class MetrajeServiceImpl implements IMetrajeService{
 		metrajeModif.setClasificado(metrajeAcum.getClasificado());
 		
 		metrajeRepository.save(metrajeModif);
+		*/
 		return null;
 	}
 	

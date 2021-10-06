@@ -23,6 +23,7 @@ import com.disney.service.IPersonajeService;
 @RequestMapping("/characters")
 @CrossOrigin("*")
 public class PersonajeController {
+	
 	@Autowired
 	private IPersonajeService iPersonajeService;
 	
@@ -41,7 +42,7 @@ public class PersonajeController {
 		Personaje personaje = iPersonajeService.insertarPersonaje(personajeDTO);
 		return new ResponseEntity<>(personaje, HttpStatus.CREATED);
 	}
-	@PutMapping
+	@PutMapping("/{id}")
 	public ResponseEntity<?> actualizarPersonaje(@PathVariable("id") Long id, @RequestBody PersonajeDTO personajeDTO) {
 		Personaje personaje = iPersonajeService.actualizarPersonaje(id, personajeDTO);
 		return new ResponseEntity<>(personaje, HttpStatus.OK);
