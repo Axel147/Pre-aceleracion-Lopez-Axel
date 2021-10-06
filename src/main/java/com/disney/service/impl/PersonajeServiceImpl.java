@@ -107,21 +107,15 @@ public class PersonajeServiceImpl implements IPersonajeService{
 
 	@Override
 	public Personaje actualizarPersonaje(Long id, PersonajeDTO personajeDTO) {
-		Personaje personajeModif = personajeRepository.getById(id);
+		/*Personaje personajeModif = personajeRepository.getById(id);
 		Personaje personajeAcum;
 		personajeModif = new PersonajeBuilder().withPersonajeDTO(personajeDTO).build();
-		/*
-		personajeModif.setNombre(personajeDTO.getNombre());
-		personajeModif.setImagen(personajeDTO.getImagen());
-		personajeModif.setEdad(personajeDTO.getEdad());
-		personajeModif.setPeso(personajeDTO.getPeso());
-		personajeModif.setHistoria(personajeDTO.getHistoria());
-		*/
+		
 		personajeAcum = almacenarMetraje(personajeDTO);
 		personajeModif.setParticipaciones(personajeAcum.getParticipaciones());
 		
 		personajeRepository.save(personajeModif);
-		return null;
+		*/return null;
 	}
 
 	@Override
