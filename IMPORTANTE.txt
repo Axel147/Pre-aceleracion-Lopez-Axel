@@ -1,0 +1,45 @@
+Por una confusion en la fecha de entrega no se completo la documentacion en Swagger, pero se dejara anotado aca como 
+proceder con la parte inicial de registro y login para luego poder realizar las siguientes peticiones.
+
+Registrarse: 
+
+1) Ingresar el endpoint http://localhost:8080/auth/register en Postman (teniendo seleccionada la opcion de post)
+2) Dirigirse a la seccion Header y agregar una casilla nueva llamada "Authorization"
+3) Dirigirse a body/raw/Json
+4) Completamos el Json como el siguiente ejemplo
+	{
+	"name":"NombreUsuario",
+	"lastName":"ApellidoUsuario",
+	"mail":"correoEjemplo@gmail.com",
+	"username":"nombreUsuario",
+	"password":"contraseña"
+	}
+5) Hacemos click en Send
+
+Nota: para que el correo llegue al mail seleccionado es necesario poner un correo electronico valido en el archivo 
+application.properties junto a su correspondiente contraseña (por motivos de seguridad en el repositorio la contraseña
+no se encuentra subida). Otra consideracion a tener en cuenta es que debe ser un gmail.
+
+spring.mail.username = correo@gmail.com
+spring.mail.password = contraseñadecorreo
+
+Luego de tener todo esto ya deberia de llegar el mail notificando que se creo el usuario correctamente.
+
+------------------------------------------------------------------------------------------------------------------------------
+
+Login
+
+1) http://localhost:8080/auth/authentication en Postman (teniendo seleccionada la opcion de post)
+2) Dirigirse a body/raw/Json
+3) Completamos el Json como el usuario creado anteriormente
+	{
+	"username":"nombreUsuario",
+	"password":"contraseña"
+	}
+4) Al hacer click en Send Postman nos dara el token el cual debemos copiar
+5) Dirigirse a Authorization/Type/Bearer Token
+6) Pego el token copiado en el paso 4.
+
+Ya se encuentra logeado, a partir de ahora puede utilizar los demas endpoints los cuales son:
+* http://localhost:8080/characters
+* http://localhost:8080/movies

@@ -23,7 +23,7 @@ INSERT INTO `genero` (`id`, `nombre`, `imagen`) VALUES
 	(6, 'Acción', 'ruta://');
 /*!40000 ALTER TABLE `genero` ENABLE KEYS */;
 
--- Volcando datos para la tabla disney.metraje: ~15 rows (aproximadamente)
+-- Volcando datos para la tabla disney.metraje: ~23 rows (aproximadamente)
 /*!40000 ALTER TABLE `metraje` DISABLE KEYS */;
 INSERT INTO `metraje` (`id`, `titulo`, `imagen`, `fecha`, `calificacion`) VALUES
 	(1, 'Fantansia', 'ruta...', '2021-08-30', 5),
@@ -42,7 +42,7 @@ INSERT INTO `metraje` (`id`, `titulo`, `imagen`, `fecha`, `calificacion`) VALUES
 	(18, 'Lilo y Stich', '//ruta', '2000-01-01', 4.5),
 	(19, 'Pelicula01', '//ruta', '2000-01-01', 4),
 	(22, 'Pelicula02', '//ruta', '2000-01-01', 4.5),
-	(23, 'Pelicula03', '//ruta', '2000-01-01', 4.5),
+	(23, 'pelicula19', 'rutaModif...', '2021-02-01', 1.1),
 	(25, 'Pelicula04', '//ruta', '2000-01-01', 4.5),
 	(26, 'Pelicula05', '//ruta', '2000-01-01', 4.5),
 	(34, 'Pelicula06', '//ruta', '2000-01-01', 4.5),
@@ -51,10 +51,11 @@ INSERT INTO `metraje` (`id`, `titulo`, `imagen`, `fecha`, `calificacion`) VALUES
 	(37, 'Pelicula08', '//ruta', '2000-01-01', 4.3),
 	(38, 'Pelicula08', '//ruta', '2000-01-01', 4.3),
 	(39, 'Pelicula09', '//ruta', '2000-01-01', 4.3),
-	(40, 'Pelicula10', '//ruta', '2000-01-01', 4.3);
+	(40, 'Pelicula10', '//ruta', '2000-01-01', 4.3),
+	(41, 'pelicula18', 'ruta...', '2021-08-29', 3.7);
 /*!40000 ALTER TABLE `metraje` ENABLE KEYS */;
 
--- Volcando datos para la tabla disney.metraje_genero: ~0 rows (aproximadamente)
+-- Volcando datos para la tabla disney.metraje_genero: ~12 rows (aproximadamente)
 /*!40000 ALTER TABLE `metraje_genero` DISABLE KEYS */;
 INSERT INTO `metraje_genero` (`id`, `metraje_id`, `genero_id`) VALUES
 	(1, 25, 2),
@@ -67,34 +68,40 @@ INSERT INTO `metraje_genero` (`id`, `metraje_id`, `genero_id`) VALUES
 	(19, 35, 4),
 	(20, 36, 2),
 	(21, 37, 2),
-	(22, 38, 2);
+	(22, 38, 2),
+	(23, 41, 1);
 /*!40000 ALTER TABLE `metraje_genero` ENABLE KEYS */;
 
--- Volcando datos para la tabla disney.metraje_personaje: ~2 rows (aproximadamente)
+-- Volcando datos para la tabla disney.metraje_personaje: ~7 rows (aproximadamente)
 /*!40000 ALTER TABLE `metraje_personaje` DISABLE KEYS */;
 INSERT INTO `metraje_personaje` (`id`, `metraje_id`, `personaje_id`) VALUES
 	(3, 22, 2),
-	(4, 23, 2),
-	(5, 23, 3),
 	(6, 34, 2),
 	(7, 34, 3),
 	(8, 35, 4),
-	(9, 39, 3);
+	(9, 39, 3),
+	(15, 2, 16),
+	(16, 41, 2);
 /*!40000 ALTER TABLE `metraje_personaje` ENABLE KEYS */;
 
--- Volcando datos para la tabla disney.personaje: ~5 rows (aproximadamente)
+-- Volcando datos para la tabla disney.personaje: ~9 rows (aproximadamente)
 /*!40000 ALTER TABLE `personaje` DISABLE KEYS */;
 INSERT INTO `personaje` (`id`, `nombre`, `imagen`, `edad`, `peso`, `historia`) VALUES
+	(1, 'Personaje1', 'ruta...', 22, 75, 'zzzzz'),
 	(2, 'Mickey Mouse', 'ruta...', 92, 1, 'bla bla bla'),
 	(3, 'Minnie Mouse', 'asldka', 90, 0.5, 'sarasa'),
 	(4, 'Iron Man', 'asd', 51, 84, 'jasdjklasjkl'),
-	(5, 'personaje1', 'ruta...', 21, 80, 'bla bla bla');
+	(5, 'personaje5', 'ruta...', 21, 80, 'bla bla bla'),
+	(6, 'personaje6', 'ruta...', 26, 77, 'sdklñasdñ'),
+	(8, 'Donald Duck', 'ruta...', 92, 1.2, 'Cuak Cuak'),
+	(16, 'Personaje16', 'ruta...', 11, 31, 'Bla bla');
 /*!40000 ALTER TABLE `personaje` ENABLE KEYS */;
 
 -- Volcando datos para la tabla disney.usuario: ~1 rows (aproximadamente)
 /*!40000 ALTER TABLE `usuario` DISABLE KEYS */;
 INSERT INTO `usuario` (`id`, `name`, `last_name`, `mail`, `username`, `password`) VALUES
-	(1, 'Axel', 'Lopez', 'lopez.b.axel@gmail.com', 'laxel', '1234');
+	(1, 'Axel', 'Lopez', 'lopez.b.axel@gmail.com', 'laxel', '1234'),
+	(10, 'Usuario2', 'SuApellido', 'lopez.b.axel@gmail.com', 'user', 'contras');
 /*!40000 ALTER TABLE `usuario` ENABLE KEYS */;
 
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;
